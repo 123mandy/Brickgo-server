@@ -1,13 +1,13 @@
 const asyncHandler = require("express-async-handler");
-const Product = require("../models/productModel");
+const Order = require("../models/orderModel");
 
 const listAllOrders =asyncHandler(async(req,res)=>{
-    const orders = await Product.find(); //get all of them
+    const orders = await Order.find(); //get all of them
     res.status(200).json(orders)
 });
 
 const createOrder =asyncHandler(async(req,res)=>{
-    const order = await Product.create(req.body)
+    const order = await Order.create(req.body)
     order.save((err, product)=>{
         if(err) res.send(err);
         res.status(200).json(order)
@@ -15,7 +15,7 @@ const createOrder =asyncHandler(async(req,res)=>{
 })
 
 const readOrder =asyncHandler(async(req,res)=>{
-    const order = await Product.findById(req.params.orderId); //get all of them
+    const order = await Order.findById(req.params.orderId); //get all of them
     res.status(200).json(order)
 })
 

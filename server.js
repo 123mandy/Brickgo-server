@@ -19,7 +19,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 app.use('/api/products', require("./api/routes/productRoute"))
-app.use('/api/users', require("./api/routes/userRoute"))
+ app.use('/api/users', require("./api/routes/userRoute"))
+ app.use('/api/orders', require("./api/routes/orderRoute"))
 app.use(errorHandler);
 
 

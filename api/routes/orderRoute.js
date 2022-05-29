@@ -9,8 +9,8 @@ const {listAllOrders, createOrder, readOrder} = require("../controllers/orderCon
 // router.put("/:id",protect, updateProduct)
 // router.delete("/:id",protect, deleteProduct)
 
-router.get("/", listAllProducts)
-router.post("/",createProduct)
+router.get("/", listAllOrders)
+router.post("/",createOrder)
 
 router.get("/:orderId", readOrder)
 

@@ -24,10 +24,22 @@ const readOrder =asyncHandler(async(req,res)=>{
     res.status(200).json(order)
 })
 
+const deleteOrder =asyncHandler(async(req,res)=>{
+    const order = await Order.findById(req.params.orderId);
+    if(!order){
+        res.status(400)
+        throw new Error("Product not found")
+    };
+
+    await order.remove();
+    res.status(200).json({message:`delete order ${req.params.orderId}`})
+})
+
 
 module.exports = {
     listAllOrders,
     createOrder,
     readOrder,
-    findMyOrder
+    findMyOrder,
+    deleteOrder
 }

@@ -38,6 +38,7 @@ const OrderSchema = new Schema(
             required: "Enter your phone number"
         }
     },
+    {timestamps: true},
     {collection: 'order'}
 );
 

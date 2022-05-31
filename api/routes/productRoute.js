@@ -12,7 +12,7 @@ const { listAllProducts, createProduct, readProduct, updateProduct, deleteProduc
 router.get("/", listAllProducts)
 router.post("/",createProduct)
 
-router.get("/:userId", findMyProduct)
+router.get("/my/:userId", findMyProduct)
 
 router.get("/:productId", readProduct)
 router.put("/:productId",updateProduct)

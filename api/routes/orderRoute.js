@@ -12,7 +12,7 @@ const {listAllOrders, createOrder, readOrder, findMyOrder} = require("../control
 router.get("/", listAllOrders)
 router.post("/",createOrder)
 
-router.get("/:userId", findMyOrder)
+router.get("/my/:userId", findMyOrder)
 
 router.get("/:orderId", readOrder)
 

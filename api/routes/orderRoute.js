@@ -1,6 +1,6 @@
 const express =require("express"); // common js module
 const router = express.Router();
-const {listAllOrders, createOrder, readOrder} = require("../controllers/orderController");
+const {listAllOrders, createOrder, readOrder, findMyOrder} = require("../controllers/orderController");
 // const {protect} = require("../middleware/authMiddleware");
 
 // router.get("/", protect, getProducts)
@@ -11,6 +11,8 @@ const {listAllOrders, createOrder, readOrder} = require("../controllers/orderCon
 
 router.get("/", listAllOrders)
 router.post("/",createOrder)
+
+router.get("/:userId", findMyOrder)
 
 router.get("/:orderId", readOrder)
 

@@ -90,6 +90,12 @@ const updateCart = asyncHandler(async(req, res)=>{
     res.status(200).json(cartProduct)
 })
 
+// Delete product in your cart
+const deleteCart = asyncHandler(async(req, res)=>{
+    const deleteProduct = await User.update({_id:req.params.userId}, {$pull:{'cart':{"productId": req.params.productId}}}, {multi:true});
+    res.status(200).json(deleteProduct);
+})
+
 //Generate JWT
 const generateJWT = (id) =>{
     return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -103,5 +109,6 @@ module.exports={
     loginUser, 
     getMe,
     updateUser,
-    updateCart
+    updateCart,
+    deleteCart
 }

@@ -1,6 +1,6 @@
 const express =require("express"); // common js module
 const router = express.Router();
-const { listAllProducts, createProduct, readProduct, updateProduct, deleteProduct} = require("../controllers/productController");
+const { listAllProducts, createProduct, readProduct, updateProduct, deleteProduct, findMyProduct} = require("../controllers/productController");
 // const {protect} = require("../middleware/authMiddleware");
 
 // router.get("/", protect, getProducts)
@@ -11,6 +11,8 @@ const { listAllProducts, createProduct, readProduct, updateProduct, deleteProduc
 
 router.get("/", listAllProducts)
 router.post("/",createProduct)
+
+router.get("/:userId", findMyProduct)
 
 router.get("/:productId", readProduct)
 router.put("/:productId",updateProduct)

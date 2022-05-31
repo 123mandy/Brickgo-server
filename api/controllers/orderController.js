@@ -8,10 +8,15 @@ const listAllOrders =asyncHandler(async(req,res)=>{
 
 const createOrder =asyncHandler(async(req,res)=>{
     const order = await Order.create(req.body)
-    order.save((err, product)=>{
+    order.save((err, order)=>{
         if(err) res.send(err);
         res.status(200).json(order)
     })
+})
+
+const findMyOrder = asyncHandler(async(req,res)=>{
+    const orders = await Order.find({"user": req.params.userId}); 
+    res.status(200).json(orders)
 })
 
 const readOrder =asyncHandler(async(req,res)=>{
@@ -19,8 +24,10 @@ const readOrder =asyncHandler(async(req,res)=>{
     res.status(200).json(order)
 })
 
+
 module.exports = {
     listAllOrders,
     createOrder,
-    readOrder
+    readOrder,
+    findMyOrder
 }

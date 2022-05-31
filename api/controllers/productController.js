@@ -10,6 +10,10 @@ const listAllProducts =asyncHandler(async(req,res)=>{
     res.status(200).json(products)
 })
 
+const findMyProduct = asyncHandler(async(req,res)=>{
+    const products = await Product.find({"user": req.params.userId}); 
+    res.status(200).json(products)
+})
 // @desc    Get product by id
 // @route   GET /api/products/:id
 const readProduct =asyncHandler(async(req,res)=>{
@@ -38,23 +42,6 @@ const createProduct =asyncHandler(async(req,res)=>{
 // @desc    Update product
 // @route   PUT /api/products/:id
 const updateProduct =asyncHandler(async(req,res)=>{
-    const product = await Product.findById(req.params.productId)
-    if(!product){
-        res.status(400)
-        throw new Error("Product not found")
-    }
-    const user = await User.findById(req.user.id)
-    // Check for user
-    if(!user){
-        res.status(401)
-        throw new Error("User not found")
-    }
-
-    // Make sure the logged in user matches the goal user
-    if(product.user.toString() !== user.id){
-        res.status(401)
-        throw new Error("User not authorized")
-    }
     const updatedProduct = await Product.findByIdAndUpdate(req.params.productId, req.body,
         {
         new: true,
@@ -80,5 +67,6 @@ module.exports = {
     createProduct,
     updateProduct,
     deleteProduct,
-    readProduct
+    readProduct,
+    findMyProduct
 }
